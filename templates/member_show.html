@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>attraction_show</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/navbar-static/">
+
+    
+
+    <!-- Bootstrap core CSS -->
+<link href="static/bootstrap/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="static/bootstrap/navbar-static/navbar-top.css" rel="stylesheet">
+  </head>
+  <body>
+    
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+    <div class="container-fluid">
+      <a class="navbar-brand active" style="padding-left:40px">旅遊景點推薦</a>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0"></ul>
+        <a class="navbar-brand active" style="padding-right:20px">{{member_name}}</a>
+        <a href="/member" class="navbar-brand">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+            <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+          </svg>
+        </a>
+        <form class="d-flex" action="/append" style="padding-right:30px">
+          <button class="btn btn-outline-success" type="submit">加入景點</button>
+        </form>
+        <form class="d-flex" action="/favor" style="padding-right:30px">
+          <button class="btn btn-outline-success" type="submit">我的收藏</button>
+        </form>
+        <form class="d-flex" action="/signout" style="padding-right:30px">
+          <button class="btn btn-outline-success" type="submit">login-out</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="bg-light p-5 rounded">
+      <h1>{{location}}</h1>
+    </div>
+  </main>
+  <div class="album py-5">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for place in places %}
+        <div class="col">
+          <div class="card shadow-sm">
+            {% if place.picture == "" %}
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">{{place.name}}</text></svg>
+            {% else %}
+            <img class="bd-placeholder-img card-img-top" src="{{place.picture}}" width="100%" height="300">
+            {% endif %}
+            <div class="card-body">
+              <p class="card-text">地點：{{place.name}}<br>評分(10分)：{{place.score}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#{{place.name}}">details</button>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="{{place.name}}" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="detailModalLabel">{{place.name}}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        {% if place.picture == "" %}
+                        <svg class="bd-placeholder-img card-img-top mb-3" width="100%" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">{{place.name}}</text></svg>
+                        {% else %}
+                        <img class="bd-placeholder-img card-img-top mb-3" src="{{place.picture}}" width="100%" height="300">
+                        {% endif %}
+                        <p class="card-text mb-3">所在地：{{place.country}}</p>
+                        <p class="card-text mb-3">評分(10分)：{{place.score}}</p>
+                        <p class="fw-normal mb-3">標籤：</p>
+                        <p class="fw-bolder">
+                          {% for tag in place.tag %}
+                            #{{tag}}
+                          {% endfor %}
+                        </p>
+                        <p class="fw-normal mb-3">評論：</p>
+                        {% for comment in place.comment %}
+                        <p class="fw-bolder">→{{comment}}</p>
+                        {% endfor %}
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-1">
+                  {% if place._id not in collects %}
+                  <form action="/addfavor" method="post">
+                    <button type="submit" class="btn btn-sm btn-outline-secondary" value="{{place._id}}" name="attraction">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-heart" viewBox="0 0 16 16">
+                        <path d="M9 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h10s1 0 1-1-1-4-6-4-6 3-6 4Zm13.5-8.09c1.387-1.425 4.855 1.07 0 4.277-4.854-3.207-1.387-5.702 0-4.276Z"/>
+                      </svg></button>
+                  </form>
+                  {% else %}
+                  <form action="/removefavor" method="post">
+                    <button type="submit" class="btn btn-sm btn-outline-secondary" value="{{place._id}}" name="attraction">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-dash" viewBox="0 0 16 16">
+                        <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                        <path fill-rule="evenodd" d="M11 7.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
+                      </svg></button>
+                  </form>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <script src="static/bootstrap/assets/dist/js/bootstrap.bundle.min.js"></script>
+
+      
+  </body>
+</html>

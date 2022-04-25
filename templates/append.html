@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>add attraction</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sign-in/">
+
+    
+
+    <!-- Bootstrap core CSS -->
+<link href="static/bootstrap/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="static/bootstrap/sign-in/signin.css" rel="stylesheet">
+  </head>
+  <body class="text-center">
+    
+<main class="form-signin">
+  <form action="/getdata" method="post">
+    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" class="bi bi-brightness-alt-high" viewBox="0 0 16 16">
+      <path d="M8 3a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 3zm8 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zm-13.5.5a.5.5 0 0 0 0-1h-2a.5.5 0 0 0 0 1h2zm11.157-6.157a.5.5 0 0 1 0 .707l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm-9.9 2.121a.5.5 0 0 0 .707-.707L3.05 5.343a.5.5 0 1 0-.707.707l1.414 1.414zM8 7a4 4 0 0 0-4 4 .5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5 4 4 0 0 0-4-4zm0 1a3 3 0 0 1 2.959 2.5H5.04A3 3 0 0 1 8 8z"/>
+    </svg>
+    <h1 class="h3 mb-3 fw-normal">添加景點</h1>
+    <select class="form-select mb-1" aria-label="Default select example" name="locate" required>
+      <option selected>景點區域</option>
+      <option value="北部">北部</option>
+      <option value="東部">東部</option>
+      <option value="中部">中部</option>
+      <option value="南部">南部</option>
+      <option value="離島">離島</option>
+    </select>
+    <div class="form-floating">
+      <input type="text" class="form-control mb-1" name="country" placeholder="城市" required>
+      <label for="floatingInput">城市(例：台北)</label>
+    </div>
+    <div class="form-floating">
+      <input type="text" class="form-control mb-1" name="place" placeholder="景點名稱" required>
+      <label for="floatingPassword">景點名稱</label>
+    </div>
+    <select class="form-select mb-1" aria-label="Default select example" name="score" required>
+      <option selected>分數</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+    </select>
+    <div class="form-floating">
+      <input type="text" class="form-control mb-1" name="tag" placeholder="標籤" required>
+      <label for="floatingPassword">標籤</label>
+    </div>
+    <div class="form-floating">
+      <input type="text" class="form-control mb-1" name="picture" placeholder="網路圖片連結">
+      <label for="floatingPassword">網路圖片連結</label>
+    </div>
+    <div class="form-floating">
+      <input class="form-control mb-3" name="comment" placeholder="簡評" required>
+        <label for="floatingPassword">簡評</label>
+    </input>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">加入</button>
+  </form>
+  <form class="form-signin" action="/member" method="get">
+    <button class="btn btn-outline-success">Return</button>
+</form>
+</main>
+    
+  </body>
+</html>
